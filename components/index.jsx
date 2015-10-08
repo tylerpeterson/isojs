@@ -1,6 +1,11 @@
 'use strict';
 
-var React = require('react');
+var ReactDom = require('react-dom');
 var Hello = require('./Hello');
+var ProjectStatus = require('./project-status');
 
-React.render(<Hello />, document.getElementById('content'));
+ReactDom.render(
+  <div>
+    <Hello />
+    <ProjectStatus name="mango" count="20" />
+  </div>, document.getElementById('content'));
