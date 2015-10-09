@@ -1,6 +1,7 @@
 {
   "name": "isojs",
   "version": "0.0.1",
+  "repository": "https://github.com/tylerpeterson/isojs",
   "description": "Example of re-using React component for rendering ui on server-side and client-side.",
   "main": "index.js",
   "scripts": {
