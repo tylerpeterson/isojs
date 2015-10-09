@@ -1,3 +1,8 @@
-- add express to the app
+- add express to the app @done(2015-10-08)
+- figure out what node-jsx is @done(2015-10-08)
+	see https://www.npmjs.com/package/node-jsx
+- create express app @done(2015-10-08)
+- create express route @done(2015-10-08)
+- make the start script run express instead of http serve
 
 - create a beacon script
