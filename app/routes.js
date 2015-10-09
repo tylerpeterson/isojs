@@ -1,6 +1,11 @@
+var stream = require('express-stream');
 
 module.exports = function (app) {
-  app.get('/', function (req, res) {
-    res.send('Success!');
+  app.get('/', stream.pipe(), function (req, res) {
+    res.stream('above');
+    var timeout = setTimeout(function() {
+      res.stream('below');
+      res.close();
+    }, 1000);
   });
 };

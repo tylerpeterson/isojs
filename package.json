@@ -13,7 +13,9 @@
   "author": "Tyler Peterson <petersontb@familysearch.org>",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "express-stream": "^0.8.0",
     "node-jsx": "^0.13.3",
     "react": "^0.14.0",
     "react-dom": "^0.14.0"
