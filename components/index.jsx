@@ -8,4 +8,4 @@ ReactDom.render(
   <div>
     <Hello />
     <ProjectStatus name="Mango" count="20" />
-  </div>, document.getElementById('content'));
+  </div>, document.getElementById('below-the-fold'));
