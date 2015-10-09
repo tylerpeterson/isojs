@@ -4,6 +4,7 @@
 - create express app @done(2015-10-08)
 - create express route @done(2015-10-08)
 - introduce streaming @done(2015-10-08)
-- make the start script run express instead of http serve
+- split index.html into above and below the fold @done(2015-10-08)
+- make the start script run express instead of http serve @done(2015-10-08)
 
 - create a beacon script

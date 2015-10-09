@@ -6,6 +6,7 @@ var path = require('path');
 var app = express();
 var port = 8080;
 
+app.use(express.static(path.join(__dirname, 'node_modules', 'react', 'dist')))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
