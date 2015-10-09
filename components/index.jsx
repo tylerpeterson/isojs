@@ -7,5 +7,5 @@ var ProjectStatus = require('./project-status');
 ReactDom.render(
   <div>
     <Hello />
-    <ProjectStatus name="mango" count="20" />
+    <ProjectStatus name="Mango" count="20" />
   </div>, document.getElementById('content'));
