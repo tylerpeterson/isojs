@@ -7,7 +7,7 @@ module.exports = React.createClass({
     return (
       <div>
         {this.props.data.map(function (proj, idx) {
-          return <ProjectStatus name={proj.name} count={proj.count} promiseId={proj.promiseId} />
+          return <ProjectStatus name={proj.name} count={proj.count} promiseId={proj.promiseId} key={proj.promiseId}/>
         })}
      </div>);
   }

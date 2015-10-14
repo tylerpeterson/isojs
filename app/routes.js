@@ -2,9 +2,11 @@ var stream = require('express-stream');
 var beaconService = require('./beacon-service');
 var debug = require('debug')('isojs');
 var React = require('react');
-var parms = require('./demo-parameters');
 var lorem = require('lorem-ipsum');
 var ReactDomServer = require('react-dom/server');
+var Q = require('q');
+
+var parms = require('./demo-parameters');
 var data = require('./project-data');
 
 var fakeData = function () {
@@ -21,7 +23,19 @@ module.exports = function (app) {
   app.get('/', stream.pipe(), function (req, res) {
     var beaconId = beaconService.nextBeaconId();
     var projectData = data.getData(beaconId);
+    var finalized = false;
+    var dataPromises = [];
 
+    projectData.map(function (proj) {
+      dataPromises.push(
+        data.findPromise(proj.promiseId).then(function (count) {
+          proj.count = count;
+          proj.status = 'done';
+        })
+      );
+    });
+
+    debug('Streaming above the fold content', beaconId);
     res.stream(
       'above', // Content always rendered on the server
       {
@@ -29,8 +43,13 @@ module.exports = function (app) {
         aboveText: fakeData()
       });
 
-    beaconService.promiseForBeaconId(beaconId).then(function () {
+    function finalize() {
+      if (finalized) return false;
+
+      finalized = true;
+
       var reactHtml = "err";
+
       try {
         reactHtml = ReactDomServer.renderToString(ReactBelow({data:projectData}));
       } catch (err) {
@@ -39,6 +58,18 @@ module.exports = function (app) {
 
       res.stream('below', {reactHtml: reactHtml, clientSideJS: parms.clientSideJS});
       res.close();
+
+      return true;
+    }
+
+    beaconService.promiseForBeaconId(beaconId).then(function () {
+      if (finalize()) debug('Beacon triggered render', beaconId);
+      else debug('Beacon completed but did not trigger render', beaconId);
+    });
+
+    Q.all(dataPromises).then(function () {
+      if (finalize()) debug('Data requests completed and triggered render', beaconId);
+      else debug('Data requests completed but did not trigger render', beaconId);
     });
   });
 
