@@ -20,7 +20,7 @@ var ReactBelow = React.createFactory(require('../components/below'));
 module.exports = function (app) {
   app.get('/', stream.pipe(), function (req, res) {
     var beaconId = beaconService.nextBeaconId();
-    var projectData = data.getData();
+    var projectData = data.getData(beaconId);
 
     res.stream(
       'above', // Content always rendered on the server

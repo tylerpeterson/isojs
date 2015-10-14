@@ -25,8 +25,10 @@ var data = [
 var promises = {};
 
 var mod = {
-  getData: function () {
-    return data;
+  getData: function (beaconId) {
+    return data.map(function (proj, idx) {
+      return {name: proj.name, count: Math.floor(Math.random() * 500), promiseId: mod.makePromiseId(beaconId, idx)};
+    });
   },
   getProjectCount: function (beaconId, projectId) {
     var promiseId = mod.makePromiseId(beaconId, projectId);
