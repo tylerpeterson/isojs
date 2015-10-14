@@ -13,10 +13,12 @@
   "author": "Tyler Peterson <petersontb@familysearch.org>",
   "license": "MIT",
   "dependencies": {
+    "debug": "^2.2.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-stream": "^0.8.0",
     "node-jsx": "^0.13.3",
+    "q": "^1.4.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0"
   },
