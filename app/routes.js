@@ -5,6 +5,7 @@ var React = require('react');
 var parms = require('./demo-parameters');
 var lorem = require('lorem-ipsum');
 var ReactDomServer = require('react-dom/server');
+var data = require('./project-data');
 
 var fakeData = function () {
   return lorem({
@@ -30,7 +31,7 @@ module.exports = function (app) {
     beaconService.promiseForBeaconId(beaconId).then(function () {
       var reactHtml = "err";
       try {
-        reactHtml = ReactDomServer.renderToString(ReactBelow({data:{name: "MANGO", count: 19}}));
+        reactHtml = ReactDomServer.renderToString(ReactBelow({data:data.getData()}));
       } catch (err) {
         debug("Err when rendering on server with react:", err);
       }
