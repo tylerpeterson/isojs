@@ -2,6 +2,6 @@ module.exports = {
   roundTripLatency: function() {
     return 30; // milliseconds
   },
-  clientSideJS: false,
+  clientSideJS: true,
   beaconBehavior: 'img' // 'img', 'script', 'no-wait', or 'till-done'
 };
