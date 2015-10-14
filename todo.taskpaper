@@ -12,5 +12,5 @@
 - make the project status show ellipsis if rendered before data done, and number if after @done(2015-10-13)
 - decide whether or not to have a beacon script, too, for detecting no javascript @done(2015-10-13)
 - prove you can update props of the react components on the client side @done(2015-10-14)
-- detect which requests need to be handed off
-- request handed off requests and update properties of corresponding react components in the browser
+- detect which requests need to be handed off @done(2015-10-14)
+- request handed off requests and update properties of corresponding react components in the browser @done(2015-10-14)
