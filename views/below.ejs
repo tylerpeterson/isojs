@@ -1,10 +1,17 @@
-<p>Below the fold</p>
+  <h2>Below the Fold</h2>
 
-  <div id="below-the-fold"><!-- Where the root component will render. --></div>
+  <div id="below-the-fold">
+    <!-- Where the root component will render. -->
+    <%- reactHtml %>
+  </div>
 
   <!-- Download JS last. -->
   <script src="./react-with-addons.js"></script>
   <script src="http://localhost:8090/webpack-dev-server.js"></script>
+  <% if (clientSideJS) { %>
+
   <script type="text/javascript" src="http://localhost:8090/assets/bundle.js"></script>
+
+  <% } %>
 </body>
 </html>

@@ -7,4 +7,7 @@
 - split index.html into above and below the fold @done(2015-10-08)
 - make the start script run express instead of http serve @done(2015-10-08)
 - create a beacon @done(2015-10-13)
+- pass the project status to react's render @done(2015-10-13)
+- make many, many project status lines
+- make the project status show ellipsis if rendered before data done, and number if after
 - decide whether or not to have a beacon script, too, for detecting no javascript

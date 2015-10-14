@@ -1,11 +1,7 @@
 'use strict';
 
 var ReactDom = require('react-dom');
-var Hello = require('./Hello');
-var ProjectStatus = require('./project-status');
+var Below = require('./below');
 
-ReactDom.render(
-  <div>
-    <Hello />
-    <ProjectStatus name="Mango" count="20" />
-  </div>, document.getElementById('below-the-fold'));
+var data = {name: "Mango", count: 20};
+ReactDom.render(<Below data={data}/>, document.getElementById('below-the-fold'));
