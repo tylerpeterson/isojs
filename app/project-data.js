@@ -1,6 +1,9 @@
 
 // A file for generating and meteing out dummy data both on the client and the server.
 
+var parms = require('./demo-parameters');
+var Q = require('q');
+
 var data = [
   {name: "Mango", count: 20},
   {name: "Apple Banana", count: 20},
@@ -19,8 +22,26 @@ var data = [
   {name: "Orange", count: 199}
 ];
 
-module.exports = {
+var promises = {};
+
+var mod = {
   getData: function () {
     return data;
+  },
+  getProjectCount: function (beaconId, projectId) {
+    var promiseId = mod.makePromiseId(beaconId, projectId);
+    return mod.findPromise(promiseId);
+  },
+  makePromiseId: function (beaconId, projectId) {
+    return "prid:" + beaconId + ":" + projectId;
+  },
+  findPromise: function (promiseId) {
+    if (!promises.hasOwnProperty(promiseId)) {
+      promises[promiseId] = Q(Math.round(Math.random() * 500)).delay(parms.projectDataLatency());
+    }
+
+    return promises[promiseId];
   }
 };
+
+module.exports = mod;

@@ -20,6 +20,7 @@ var ReactBelow = React.createFactory(require('../components/below'));
 module.exports = function (app) {
   app.get('/', stream.pipe(), function (req, res) {
     var beaconId = beaconService.nextBeaconId();
+    var projectData = data.getData();
 
     res.stream(
       'above', // Content always rendered on the server
@@ -31,7 +32,7 @@ module.exports = function (app) {
     beaconService.promiseForBeaconId(beaconId).then(function () {
       var reactHtml = "err";
       try {
-        reactHtml = ReactDomServer.renderToString(ReactBelow({data:data.getData()}));
+        reactHtml = ReactDomServer.renderToString(ReactBelow({data:projectData}));
       } catch (err) {
         debug("Err when rendering on server with react:", err);
       }
@@ -55,5 +56,18 @@ module.exports = function (app) {
 
     res.writeHead(200, {'Content-Type': 'image/gif'});
     res.end(gifBinary, 'binary');
+  });
+
+
+
+
+
+  app.get('/project', function (req, res) {
+    var prid = req.query.id;
+
+    debug('Page asked for project details.', prid);
+    data.findPromise(prid).delay(parms.roundTripLatency()).then(function (count) {
+      res.json(count);
+    });
   });
 };
