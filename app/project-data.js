@@ -27,7 +27,7 @@ var promises = {};
 var mod = {
   getData: function (beaconId) {
     return data.map(function (proj, idx) {
-      return {name: proj.name, count: "...", promiseId: mod.makePromiseId(beaconId, idx)};
+      return {name: proj.name, count: "...", promiseId: mod.makePromiseId(beaconId, idx), status: 'started'};
     });
   },
   getProjectCount: function (beaconId, projectId) {
