@@ -1,0 +1,42 @@
+Code Walkthrough
+**Note:** Code found at https://github.com/tylerpeterson/isojs
+
+- On your own: Check it out, npm install.
+- How to run it:
+	- HINT: Read the package.js file
+	- start the Web Pack server
+	- start the Node App Server
+- What it looks like
+	- Demo page: Slow connection, slow data
+	- Twiddle parameters in demo-parameters.js
+	- NOTE: Must restart Node App Server whenever you change config
+	- Demo page: fast connection, slow data
+	- Demo page: fast connection, medium data
+	- Demo page: slow connection, medium data
+- Code walk-through
+	- server.js
+	- routes.js
+		- root
+		- beacon — for discovering something about the client’s network connection
+		- project — for finishing some work from the client using a token
+	- The root route in detail
+		- Above the fold (routes.js 38-44, views/above.ejs)
+		- finishing the page ( routes.js::”/“::finalize() )
+			- scenario 1: beacon triggered (routes.js 64-67)
+			- scenario 2: fast data triggered (routes.js 69-73)
+		- below the fold (routes.js :: finalize() #58; views/below.js)
+		- The React below the fold component (routes.js #53; components/below.jsx) PORTABLE
+		- The project-status component — PORTABLE
+	- Hand off
+		- Identifying the root client-side component (webpack-config.js #2)
+		- Taking over the page (components/index.js)
+	- Fake Data
+		- app/beacon-service.js — fake latency on line 23
+		- app/project-data.js
+			- Each work unit has identity, line 30
+			- fake data and latency on line 42
+			- Completing work on the server — routes.js 25-33
+			- Completing work in the browser
+				- Initiate hand-off — index.js #41
+				- Connect requests to original promises — routes.js 89-95
+				- Update and re-render — index.js 36-39
